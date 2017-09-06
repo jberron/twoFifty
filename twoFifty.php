@@ -46,24 +46,24 @@ if ($missingDigitsCount == 1)
 if ($missingDigitsCount == 2)
 {
   $permutations[0] = $candidateNumber;
-  $permutations[1] = str_split($candidateNumber)[1] . str_split($candidateNumber)[0]; //Just interchange the digits
+  $permutations[1] = $candidateNumber[1] . $candidateNumber[0]; //Just interchange the digits
 }
 
 if ($missingDigitsCount == 3) // This is where it gets interesting as we should use all the permutations for the 3 digits which are 6 different permutations, I will just mix them directly instead of writing a function for simplicity
 {
-  $permutations[0] = $candidateNumber; // or in other words  str_split($candidateNumber)[0] . str_split($candidateNumber)[1] . str_split($candidateNumber)[2};
-  $permutations[1] = str_split($candidateNumber)[0] . str_split($candidateNumber)[2] . str_split($candidateNumber)[1]; 
-  $permutations[2] = str_split($candidateNumber)[1] . str_split($candidateNumber)[0] . str_split($candidateNumber)[2]; 
-  $permutations[3] = str_split($candidateNumber)[1] . str_split($candidateNumber)[2] . str_split($candidateNumber)[0]; 
-  $permutations[4] = str_split($candidateNumber)[2] . str_split($candidateNumber)[0] . str_split($candidateNumber)[1]; 
-  $permutations[5] = str_split($candidateNumber)[2] . str_split($candidateNumber)[1] . str_split($candidateNumber)[0]; 
+  $permutations[0] = $candidateNumber;
+  $permutations[1] = $candidateNumber[0] . $candidateNumber[2] . $candidateNumber[1]; 
+  $permutations[2] = $candidateNumber[1] . $candidateNumber[0] . $candidateNumber[2]; 
+  $permutations[3] = $candidateNumber[1] . $candidateNumber[2] . $candidateNumber[0]; 
+  $permutations[4] = $candidateNumber[2] . $candidateNumber[0] . $candidateNumber[1]; 
+  $permutations[5] = $candidateNumber[2] . $candidateNumber[1] . $candidateNumber[0]; 
 }
 
 //cleanup the permutations we dont want anything that starts with zero or that is higher than our max
 $permutations = array_unique($permutations);
 foreach ($permutations as $p => $permutation)                                                                                
 {
- if ((str_split($permutations[$p])[0] == 0) || ((int)$permutations[$p] > (int)$maxNumber)) 
+ if (($permutations[$p][0] == 0) || ((int)$permutations[$p] > (int)$maxNumber)) 
   {
     unset($permutations[$p]);
   }
