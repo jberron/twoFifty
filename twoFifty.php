@@ -58,9 +58,10 @@ if ($missingDigitsCount == 3) // This is where it gets interesting as we should 
 }
 
 //cleanup the permutations we dont want anything that starts with zero or that is higher than our max
-for ($p=0;$p < count($permutations) ; $p++)                                                                                
+
+foreach ($permutations as $p => $permutation)                                                                                
 {
-  if ((str_split($permutations[$p])[0] == 0) || ($permutations[$p] > $maxNumber)) 
+ if ((str_split($permutations[$p])[0] == 0) || ((int)$permutations[$p] > (int)$maxNumber)) 
   {
     unset($permutations[$p]);
   }
@@ -79,7 +80,7 @@ foreach ($permutations as $permutation)
 {
   if ((int)$permutation <= 50 && substr_count($randomString, $permutation) < 3) { $found = true; echo 'The missing number is: '. $permutation. ' because there is less than three occurrences and the number is less or equal than 50 <br>';}
   if ((int)$permutation > 50 and (int)$permutation < 100  && substr_count($randomString, $permutation) < 2) { $found = true; echo 'The missing number is: ' . $permutation. ' because there is less than two occurrences and the number is between 50 and 100<br>';}
-  if ((int)$permutation >= 100 && substr_count($randomString, $permutation) < 1) { $found = true; echo 'The missing number is: ' . $permutation. ' because there is occurrences and the number is greater than 100<br>';}
+  if ((int)$permutation >= 100 && (int)$permutation <= $maxNumber && substr_count($randomString, $permutation) < 1) { $found = true; echo 'The missing number is: ' . $permutation. ' because there is occurrences and the number is greater than 100<br>';}
 }                                                                           
 
 if (!$found)   {echo 'It was not possible to find the number using the current method.' .'<br>' ;}                                                                                                                                                         
