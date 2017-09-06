@@ -7,7 +7,7 @@ $found = false;
 
 if (!isset($missingNumber))
 {
-  $missingNumber = rand() % 250;
+  $missingNumber = rand() % 251;
 }
  
 // ******** Prepare Strings ******
