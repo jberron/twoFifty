@@ -3,6 +3,7 @@
 $missingNumber= $_GET['number'];
 
 $maxNumber = 250;
+$found = false;
 
 if (!isset($missingNumber))
 {
@@ -38,7 +39,8 @@ for ($d=0;$d<=9;$d++)
 
 if ($missingDigitsCount == 1) 
 {
-  echo "Solved because it is a single digit number: ". $candidateNumber . '<br>';;
+  echo "Solved because it is a single digit number: ". $candidateNumber . '<br>';
+  $found = true;
 }
 
 if ($missingDigitsCount == 2)
@@ -73,15 +75,18 @@ reset ($permutations);
 if (count($permutations) == 1) 
 {
   echo "Solved because we have only one valid permutation: ". current($permutations) . '<br>';
+  $found = true;
 }
-$found = false;
 
-foreach ($permutations as $permutation)
+if (!$found)
 {
-  if ((int)$permutation <= 50 && substr_count($randomString, $permutation) < 3) { $found = true; echo 'The missing number is: '. $permutation. ' because there is less than three occurrences and the number is less or equal than 50 <br>'; break;}
-  if ((int)$permutation > 50 and (int)$permutation < 100  && substr_count($randomString, $permutation) < 2) { $found = true; echo 'The missing number is: ' . $permutation. ' because there is less than two occurrences and the number is between 50 and 100<br>'; break;}
-  if ((int)$permutation >= 100 && (int)$permutation <= $maxNumber && substr_count($randomString, $permutation) < 1) { $found = true; echo 'The missing number is: ' . $permutation. ' because there is no occurrences and the number is greater than 100<br>'; break;}
-}                                                                           
+  foreach ($permutations as $permutation)
+  {
+    if ((int)$permutation <= 50 && substr_count($randomString, $permutation) < 3) { $found = true; echo 'The missing number is: '. $permutation. ' because there is less than three occurrences and the number is less or equal than 50 <br>'; break;}
+    if ((int)$permutation > 50 and (int)$permutation < 100  && substr_count($randomString, $permutation) < 2) { $found = true; echo 'The missing number is: ' . $permutation. ' because there is less than two occurrences and the number is between 50 and 100<br>'; break;}
+    if ((int)$permutation >= 100 && (int)$permutation <= $maxNumber && substr_count($randomString, $permutation) < 1) { $found = true; echo 'The missing number is: ' . $permutation. ' because there is no occurrences and the number is greater than 100<br>'; break;}
+  }      
+}
 
 if (!$found)   {echo 'It was not possible to find the number using the current method.' .'<br>' ;}                                                                                                                                                         
                                                                                   
