@@ -60,7 +60,7 @@ if ($missingDigitsCount == 3) // This is where it gets interesting as we should 
 }
 
 //cleanup the permutations we dont want anything that starts with zero or that is higher than our max
-
+$permutations = array_unique($permutations);
 foreach ($permutations as $p => $permutation)                                                                                
 {
  if ((str_split($permutations[$p])[0] == 0) || ((int)$permutations[$p] > (int)$maxNumber)) 
@@ -88,7 +88,17 @@ if (!$found)
   }      
 }
 
-if (!$found)   {echo 'It was not possible to find the number using the current method.' .'<br><BR>' ;}                                                                                                                                                         
+if (!$found)   
+{
+
+  echo 'It was not possible to find the exact number using the current method.' .'<br><BR>' ;
+  echo 'The canditates we have for a missing number are: <br>';
+  foreach ($permutations as $key => $permutation)
+  {
+    echo $permutation . ' Times found: ' . (substr_count($randomString, $permutation)) . '<br>';
+  }
+  echo '<br>';
+}                                                                                                                                                         
                                                                                   
 echo 'MISSING NUMBER:  <BR>'. $missingNumber. '<br> <br>';
 echo 'FULL STRING:'.'<br>';
