@@ -49,7 +49,7 @@ if ($missingDigitsCount == 2)
   $permutations[1] = $candidateNumber[1] . $candidateNumber[0]; //Just interchange the digits
 }
 
-if ($missingDigitsCount == 3) // This is where it gets interesting as we should use all the permutations for the 3 digits which are 6 different permutations, I will just mix them directly instead of writing a function for simplicity
+if ($missingDigitsCount == 3) // This is where it gets interesting as we should use all the permutations for the 3 digits which are 6 different permutations, for simplicity, I will just mix them directly instead of writing a function 
 {
   $permutations[0] = $candidateNumber;
   $permutations[1] = $candidateNumber[0] . $candidateNumber[2] . $candidateNumber[1]; 
@@ -59,8 +59,8 @@ if ($missingDigitsCount == 3) // This is where it gets interesting as we should 
   $permutations[5] = $candidateNumber[2] . $candidateNumber[1] . $candidateNumber[0]; 
 }
 
-//cleanup the permutations we dont want anything that starts with zero or that is higher than our max
-$permutations = array_unique($permutations);
+//cleanup the permutations. We dont want anything that starts with zero or that is higher than our max
+$permutations = array_unique($permutations); //remove redundant permutations
 foreach ($permutations as $p => $permutation)                                                                                
 {
  if (($permutations[$p][0] == 0) || ((int)$permutations[$p] > (int)$maxNumber)) 
@@ -74,7 +74,7 @@ reset ($permutations);
                                                                                   
 if (count($permutations) == 1) 
 {
-  echo "Solved because we have only one valid permutation: ". current($permutations) . '<br><br>';
+  echo "Solved because we only have  one valid permutation: ". current($permutations) . '<br><br>';
   $found = true;
 }
 
