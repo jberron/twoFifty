@@ -80,7 +80,7 @@ foreach ($permutations as $permutation)
 {
   if ((int)$permutation <= 50 && substr_count($randomString, $permutation) < 3) { $found = true; echo 'The missing number is: '. $permutation. ' because there is less than three occurrences and the number is less or equal than 50 <br>';}
   if ((int)$permutation > 50 and (int)$permutation < 100  && substr_count($randomString, $permutation) < 2) { $found = true; echo 'The missing number is: ' . $permutation. ' because there is less than two occurrences and the number is between 50 and 100<br>';}
-  if ((int)$permutation >= 100 && (int)$permutation <= $maxNumber && substr_count($randomString, $permutation) < 1) { $found = true; echo 'The missing number is: ' . $permutation. ' because there is occurrences and the number is greater than 100<br>';}
+  if ((int)$permutation >= 100 && (int)$permutation <= $maxNumber && substr_count($randomString, $permutation) < 1) { $found = true; echo 'The missing number is: ' . $permutation. ' because there is no occurrences and the number is greater than 100<br>';}
 }                                                                           
 
 if (!$found)   {echo 'It was not possible to find the number using the current method.' .'<br>' ;}                                                                                                                                                         
